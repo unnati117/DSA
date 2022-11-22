@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int bsearch(vector<int> a,int l,int r,int t)
+    { int m;
+       if(r>=l)
+       {
+           m=(l+r)/2;
+           if(a[m]==t)
+               return m;
+           else if(t>a[m])
+             return  bsearch(a,m+1,r,t);
+           else if(t<a[m])
+              return bsearch(a,l,m-1,t);
+           
+           
+       }
+     else
+         return l;
+     return l;
+    }
+    int searchInsert(vector<int>& nums, int target) 
+    {
+        return bsearch(nums,0,nums.size()-1,target);
+        
+    }
+};
