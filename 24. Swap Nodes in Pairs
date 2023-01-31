@@ -1,0 +1,24 @@
+// TC=O(n)
+// SC=O(1)
+class Solution {
+public:
+    ListNode* swapPairs(ListNode* head) 
+    { if(!head || !head->next)
+      return head;
+        ListNode *t= new ListNode;
+      t->next=head;
+      ListNode *temp= new ListNode;
+      ListNode *n=t;
+      while(t->next!=NULL)
+      { if(!t->next->next)
+         break;
+        temp=t->next;
+        t->next=temp->next;
+        temp->next=t->next->next;
+        t->next->next=temp;
+        t=t->next->next;
+      }
+      return n->next;
+        
+    }
+};
