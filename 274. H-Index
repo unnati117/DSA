@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int b(vector<int>& v,int l,int h)
+    {
+        int n=v.size()-1;
+        if(l<=h){
+        int m=l+(h-l)/2;
+        if(v[m]<n-m+1)
+        return b(v,m+1,h);
+        else
+        {
+            if(m>0 && v[m-1]<=n-m+1)
+             return n-m+1;
+            else
+             return b(v,l,m-1);
+        }}
+        return n+1;
+    }
+    int hIndex(vector<int>& citations) 
+    { int n=citations.size();
+        sort(citations.begin(),citations.end());
+        if(citations[n-1]==0)
+          return 0;
+              return b(citations,0,n-1);
+        
+    }
+};
