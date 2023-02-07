@@ -1,0 +1,30 @@
+class Solution {
+public:
+    double f(double x,long long n)
+    { double b;
+      
+        if(n==0)
+         return 1;
+         if(n<0)
+          b=f(x,-n);
+        if(n%2==0)
+          { b=f(x,n/2);
+          return b*b;
+          }
+        else
+          { b=f(x,n-1);
+            return x*b;
+          }
+    }
+    double myPow(double x, int n) 
+    {  if(x==0)
+         return 0;
+        long long y;
+        y=n;
+
+       if(n>0)
+         return f(x,y);
+       else
+        return f(1/x,-y); 
+    }
+};
