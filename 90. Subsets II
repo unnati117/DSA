@@ -1,0 +1,32 @@
+class Solution {
+public:
+    vector<vector<int>> ans;
+    vector<vector<int>> f(vector<int>& nums,vector<int> v,int i)
+    {
+        if(i>=nums.size())
+         { ans.push_back(v);
+          return ans;
+         }
+           
+        v.push_back(nums[i]);
+        f(nums,v,i+1);
+        v.pop_back();
+        
+        if(i<nums.size()-1 && nums[i+1]==nums[i])
+        { int t=nums[i];
+            while(i < nums.size() && nums[i] == t)
+               ++i;
+               
+            f(nums,v,i);
+        }
+        else
+            f(nums,v,i+1);
+
+        return ans;
+    }
+    vector<vector<int>> subsetsWithDup(vector<int>& nums) 
+    { vector<int> v;
+      sort(nums.begin(),nums.end());
+        return f(nums,v,0);
+    }
+};
