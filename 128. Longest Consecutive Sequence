@@ -1,0 +1,48 @@
+Bruteforce:  O(n2)
+Better: Sort the array and then find longest sequence in the array (but distortion of array not liked generally)
+Optimal: Use unordered_set to store elements and apply loop on the set if element-1 present then continue otherwise if not present then cnt starts from there till
+          element+1 exists and longest_sequence=max(longest_sequence,cnt)
+set.find: Best and Average time - O(1)
+worst : O(n) very very rare in case of collisions 
+
+Time: Assuming set takes O(1) for its operations:  O(n)- for insertion + O(n+n) for loop
+total: O(3n)
+
+Space: O(n)
+
+
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) 
+    { 
+       if(nums.size()==0)
+          return 0;
+
+        unordered_set<int> s;
+
+        for(int i=0;i<nums.size();++i)
+        {
+            s.insert(nums[i]);
+        }
+        
+        int longest_sequence=1;
+
+        for(auto it:s)
+        {
+            if(s.find(it-1)==s.end())
+            { 
+               int cnt=1;
+               int x=it;
+               while(s.find(x+1)!=s.end())
+               {
+                   ++cnt;
+                   ++x;
+               }
+               longest_sequence=max(longest_sequence,cnt);
+            }
+        }
+
+        return longest_sequence;
+        
+    }
+};
