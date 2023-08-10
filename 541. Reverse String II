@@ -1,0 +1,42 @@
+TC: O(n)
+SC:O(n)
+
+My solution:  class Solution {
+public:
+    string reverseStr(string s, int k) 
+    {
+        int left=0,right=0;
+        int i=0;
+        while(right<s.length())
+        {
+            while(right<s.length() && i<k)
+            {
+                ++right;
+                ++i;
+            }
+            
+            reverse(s.begin()+left,s.begin()+right);
+            i=0;
+            left=right+k;
+            right=left;
+            
+        }
+        
+        return s;
+    }
+};
+
+good solution:  class Solution {
+public:
+    string reverseStr(string s, int k) {
+        int n = s.size();
+        for (int i = 0; i < n; i += 2 * k) {
+            if (i + k <= n) {
+                reverse(s.begin() + i, s.begin() + i + k);
+            } else {
+                reverse(s.begin() + i, s.end());
+            }
+        }
+        return s;
+    }
+};
