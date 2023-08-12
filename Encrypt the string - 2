@@ -1,0 +1,75 @@
+Link: https://practice.geeksforgeeks.org/problems/encrypt-the-string-21117/1
+
+
+string encryptString(string S) 
+    {
+      int n=S.length();
+        
+        string c="";
+        int cnt,x;
+        
+        map<int,char> m;
+        
+        m.insert(make_pair(0,'0'));
+        m.insert(make_pair(1,'1'));
+        m.insert(make_pair(2,'2'));
+        m.insert(make_pair(3,'3'));
+        m.insert(make_pair(4,'4'));
+        m.insert(make_pair(5,'5'));
+        m.insert(make_pair(6,'6'));
+        m.insert(make_pair(7,'7'));
+        m.insert(make_pair(8,'8'));
+        m.insert(make_pair(9,'9'));
+        m.insert(make_pair(10,'a'));
+        m.insert(make_pair(11,'b'));
+        m.insert(make_pair(12,'c'));
+        m.insert(make_pair(13,'d'));
+        m.insert(make_pair(14,'e'));
+        m.insert(make_pair(15,'f'));
+        
+        for(int i=0;i<n;++i)
+        {
+            string str="";
+            if(i<n-1 && S[i]==S[i+1])
+            {
+                 cnt=1;
+                 x=i;
+                 while(x<n-1 && S[x]==S[x+1])
+                 {
+                     ++cnt;
+                     ++x;
+                     
+                 }
+                 i=x;
+                 if(cnt>15)
+                 {
+                     while(cnt!=0)
+                     {
+                         int r=cnt%16;
+                         str+=m[r];
+                         cnt=cnt/16;
+                     }
+                    //  reverse(str.begin(),str.end());
+                     c+=S[i];
+                     c+=str;
+                     
+                 }
+                 else
+                 {  c+=S[i];
+                    c+=m[cnt];
+                    
+                 }
+            }
+            else
+            {
+                cnt=1;
+                c+=S[i];
+                c+='1';
+                
+            }
+        }
+        reverse(c.begin(),c.end());
+        return c;
+        
+        
+    }
