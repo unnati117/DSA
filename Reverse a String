@@ -1,1 +1,26 @@
+Reverse a String
+link- https://practice.geeksforgeeks.org/problems/java-reverse-a-string0416/1
 
+
+
+string fun(string s,int i,string str)
+    {
+        if(i>=s.length())
+          return str;
+          
+        str=fun(s,i+1,str);
+        str+=s[i];
+        return str;
+        
+    }
+  
+    string revStr(string S) 
+    {
+        // code here
+        
+        string str="";
+        return fun(S,0,str);
+        
+        
+    }
+};
