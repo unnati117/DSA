@@ -1,0 +1,52 @@
+#include <bits/stdc++>
+using namespace std;
+
+int fib(int n)
+{
+    if(n<=1)
+      return 1;
+    
+    int a=fib(n-1);
+    int b=fib(n-2);
+    return a+b;
+}
+
+int fib_helper(int n,int *arr)
+{  if(n<=1)
+     return n;
+  //    Now we need to check if fib(n) is already calculated or not so for that but array already contains garbage value so will input -1 in the calling fun
+    
+  // Check if output already exists
+  
+  if(arr[n]!=-1)
+  {
+      return arr[n];
+  }
+  
+  int a=fib_helper(n-1,arr);
+  int b=fib_helper(n-2,arr);
+ 
+ // Calculate ans then save it for future use
+  arr[n]=a+b;
+  
+  // Return the output
+  return arr[n];
+}
+
+int fib_2(int n)
+{
+    int *arr=new int[n+1];
+    
+// We need to make recursive calls we can't call this fun recursively coz it will make a new array on each call so we will make a helper fun for recursion
+  for(inti=0;i<=n;++i)
+    arr[i]=-1;
+    
+  return fib_helper(n,arr);
+}
+
+int main() {
+    int n;
+    cin>>n;
+    
+    cout<<fib_2(n);
+}
